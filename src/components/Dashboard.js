@@ -49,7 +49,7 @@ function Dashboard() {
 
                         </div>
 
-                        <div class="col-md-9 col-lg-7 col-xl-10 d-flex flex-row justify-content-center ">
+                        <div class="col-md-10 col-lg-10 col-xl-12 d-flex flex-row justify-content-center ">
                             <div class="card mb-4 me-4" style={{ borderRadius: 25 }}>
                                 <div class="card-body p-4">
 
@@ -65,31 +65,15 @@ function Dashboard() {
                                                 <p class="ms-2 mb-3"><strong>🌡️ Bugünün Saatlik Hava Durumu</strong></p>
 
                                                 <div class="d-flex justify-content-around text-center mb-1 pb-3 pt-2">
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[0].hour[6].temp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"><img src={(`${city.forecast.forecastday[0].hour[6].condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0"><strong>06:00</strong></p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[0].hour[10].temp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"><img src={(`${city.forecast.forecastday[0].hour[10].condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0"><strong>10:00</strong></p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[0].hour[14].temp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"><img src={(`${city.forecast.forecastday[0].hour[14].condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0"><strong>14:00</strong></p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[0].hour[18].temp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"><img src={(`${city.forecast.forecastday[0].hour[18].condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0"><strong>18:00</strong></p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[0].hour[23].temp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"><img src={(`${city.forecast.forecastday[0].hour[23].condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0"><strong>23:00</strong></p>
-                                                    </div>
+                                                    {
+                                                        Object.values(city.forecast.forecastday).map((value, index) => (
+                                                            <div class="flex-column" key={index}>
+                                                                <p class="small"><strong>{city.forecast.forecastday[0].hour[index * 4].temp_c}°C</strong></p>
+                                                                <i class="fas fa-sun fa-2x mb-3"><img src={(`${city.forecast.forecastday[0].hour[index * 4].condition.icon}`)} alt="weather" /></i>
+                                                                <p class="mt-2 mb-0"><strong>{index * 4 + ":00"}</strong></p>
+                                                            </div>
+                                                        ))
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -110,35 +94,29 @@ function Dashboard() {
 
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <p class="ms-2 mb-3"><strong>☁️ 5 Günlük Hava Durumu</strong></p>
+                                                <p class="ms-2 mb-3"><strong>☁️ 6 Günlük Hava Durumu</strong></p>
 
                                                 <div class="d-flex justify-content-around text-center mb-3 pb-3 pt-2">
+                                                    {
 
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[0].day.avgtemp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[0].day.condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0">Bugün</p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[1].day.avgtemp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[1].day.condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0">Yarın</p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[2].day.avgtemp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[2].day.condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0">{city.forecast.forecastday[2].date}</p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[3].day.avgtemp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[3].day.condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0">{city.forecast.forecastday[3].date}</p>
-                                                    </div>
-                                                    <div class="flex-column">
-                                                        <p class="small"><strong>{city.forecast.forecastday[4].day.avgtemp_c}°C</strong></p>
-                                                        <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[4].day.condition.icon}`)} alt="weather" /></i>
-                                                        <p class="mt-2 mb-0">{city.forecast.forecastday[4].date}</p>
-                                                    </div>
+                                                        // Object.values(city).map((value, index) => (
+                                                        //     <div class="flex-column" key={index}>
+                                                        //         <p class="small"><strong>{city.forecast.forecastday[index].day.avgtemp_c}°C</strong></p>
+                                                        //         <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[index].day.condition.icon}`)} alt="weather" /></i>
+                                                        //         <p class="mt-2 mb-0">{index === 0 ? "Bugün" : city.forecast.forecastday[index].date}</p>
+                                                        //     </div>
+                                                        // ))
+
+                                                        Object.values(city.forecast.forecastday).map((value, index) => (
+                                                            city.forecast.forecastday.length > 0
+                                                                ? <div class="flex-column" key={index}>
+                                                                    <p class="small"><strong>{city.forecast.forecastday[index].day.avgtemp_c}°C</strong></p>
+                                                                    <i class="fas fa-sun fa-2x mb-3"  ><img src={(`${city.forecast.forecastday[index].day.condition.icon}`)} alt="weather" /></i>
+                                                                    <p class="mt-2 mb-0">{index === 0 ? "Bugün" : (index === 1 ? "Yarın" : city.forecast.forecastday[index].date)}</p>
+                                                                </div>
+                                                                : null
+                                                        ))
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
